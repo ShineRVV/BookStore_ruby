@@ -1,54 +1,132 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @book.category_id %>
-</p>
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-sidebar">
+                  <h2 class="sidebar-title">RELATED PRODUCTS</h2>
+                  <% @book_list.each do |book| %>
+                    <div class="thubmnail-recent">
+                        <img src="<%= book.photo %>" class="recent-thumb" alt="">
+                            <h2><a href=<%= book_path(book) %>> <%= book.title %> </a></h2>
+                            <div class="product-sidebar-price">
+                              <ins>$<%= book.cost - (book.cost*book.sale) %></ins> <del>$<%= book.cost %></del>
+                            </div>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+        <div class="col-md-8">
+          <div class="product-content-right">
+              <div class="product-breadcroumb">
+                <a href="">Home</a>
+                <a href="">Category Name</a>
+                <a href="">Sony Smart TV - 2015</a>
+              </div>
 
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
+              <div class="row">
+                <div class="col-sm-6">
+                    <div class="product-images">
+                      <div class="product-main-img">
+                          <img src="<%= @book.photo %>" alt="">
+                        </div>
+                    </div>
+                </div>
 
-<p>
-  <strong>Publish:</strong>
-  <%= @book.publish_id %>
-</p>
+                <div class="col-sm-6">
+                    <div class="product-inner">
+                        <h2 class="product-name"><%= @book.title %></h2>
+                        <div class="product-inner-price">
+                            <ins>$<%= @book.cost - (@book.cost*@book.sale) %></ins> <del>$<%= @book.cost %></del>
+                        </div>
 
-<p>
-  <strong>Photo:</strong>
-  <%= @book.photo %>
-</p>
+                        <form action="" class="cart">
+                            <div class="quantity">
+                                <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                            </div>
+                            <button class="add_to_cart_button" type="submit">Add to cart</button>
+                        </form>
 
-<p>
-  <strong>Content:</strong>
-  <%= @book.content %>
-</p>
+                        <div class="product-inner-category">
+                            <p>Category: <a href="">Summer</a></p>
+                        </div>
 
-<p>
-  <strong>Weight:</strong>
-  <%= @book.weight %>
-</p>
+                          <div role="tabpanel">
+                              <ul class="product-tab" role="tablist">
+                                  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+                                  <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                              </ul>
+                          <div class="tab-content">
+                              <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                  <h2> Introduce Book </h2>
+                                  <p> <%= @book.content %> </p>
+                              </div>
+                              <div role="tabpanel" class="tab-pane fade" id="profile">
+                                  <h2>Reviews</h2>
+                                  <div class="submit-review">
+                                    <p><label for="name">Name</label> <input name="name" type="text"></p>
+                                    <p><label for="email">Email</label> <input name="email" type="email"></p>
+                                    <div class="rating-chooser">
+                                      <p>Your rating</p>
+                                      <div class="rating-wrap-post">
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                      </div>
+                                    </div>
+                                    <p><label for="review">Your
+                                        <textarea name="review" id="" cols="30" rows="10"></textarea>
+                                    </p>
+                                    <p><input type="submit" value="Submit"></p>
+                                  </div>
 
-<p>
-  <strong>Size:</strong>
-  <%= @book.size %>
-</p>
+                                </div>
+                          </div>
 
-<p>
-  <strong>Pages:</strong>
-  <%= @book.pages %>
-</p>
+                   </div>
+              </div>
+          </div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @book.date %>
-</p>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+                        <div class="related-products-wrapper">
+                            <h2 class="related-products-title">Details Book</h2>
+                            <table class="table table-bordered table-detail table-striped">
+                              <tbody>
+                                <tr>
+                                <td> Tác Giả </td>
+                                <td> <%= @book.author %> </td>
+                              </tr>
+                              <tr>
+                                <td> Nhà xuất bản </td>
+                                <td> <%= @book.publish_id %> </td>
+                              </tr>
+                              <tr>
+                                <td> Trọng lượng vận chuyển (gram) </td>
+                                <td> <%= @book.weight %> </td>
+                              </tr>
+                              <tr>
+                                <td> Kích thước </td>
+                                <td> <%= @book.size %> </td>
+                              </tr>
+                              <tr>
+                                <td> Số trang </td>
+                                <td> <%= @book.pages %> </td>
+                              </tr>
+                              <tr>
+                                <td> Ngày xuất bản </td>
+                                <td> <%= @book.date %> </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
